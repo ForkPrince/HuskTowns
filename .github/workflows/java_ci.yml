@@ -4,6 +4,10 @@ name: Java CI
 on:
   push:
     branches: [ 'master' ]
+    paths-ignore:
+      - 'docs/**'
+      - 'workflows/**'
+      - 'README.md'
   workflow_dispatch:
 
 permissions:
@@ -22,7 +26,7 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: build
+          arguments: test
       - uses: actions/upload-artifact@v3
         with:
           name: Package
